@@ -2,6 +2,7 @@
 
 module public Microsoft.FSharp.Compiler.Ast
 
+open System
 open System.Collections.Generic
 open Internal.Utilities.Text.Lexing
 open Internal.Utilities.Text.Parsing
@@ -380,7 +381,6 @@ type
     /// Represents the explicit declaration of a type parameter
     SynTyparDecl =
     | TyparDecl of attributes:SynAttributes * SynTypar
-
 
 and
     [<NoEquality; NoComparison>]
@@ -1488,7 +1488,7 @@ type ParsedImplFile =
 [<NoEquality; NoComparison>]
 type ParsedSigFile =
     | ParsedSigFile of hashDirectives:ParsedHashDirective list * ParsedSigFileFragment list
-
+    
 //----------------------------------------------------------------------
 // AST and parsing utilities.
 //----------------------------------------------------------------------
@@ -1561,7 +1561,6 @@ type ParsedInput =
             assert("" = "compiler expects ParsedInput.ImplFile and ParsedInput.SigFile to have at least one fragment, 4488")
 #endif
             rangeN filename 0 (* There are no implementations, e.g. due to errors, so return a default range for the file *)
-
 
 //----------------------------------------------------------------------
 // Construct syntactic AST nodes

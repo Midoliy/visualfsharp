@@ -1192,6 +1192,7 @@ type public TcGlobals(compilingFslib: bool, ilg:ILGlobals, fslibCcu: CcuThunk, d
   member val attrib_SecurityCriticalAttribute              = findSysAttrib "System.Security.SecurityCriticalAttribute"
   member val attrib_SecuritySafeCriticalAttribute          = findSysAttrib "System.Security.SecuritySafeCriticalAttribute"
   member val attrib_ComponentModelEditorBrowsableAttribute = findSysAttrib "System.ComponentModel.EditorBrowsableAttribute"
+  member val attrib_PreTranslatorAttribute                 = mk_MFCore_attrib "PreTranslatorAttribute"
 
   member g.improveType tcref tinst = improveTy tcref tinst
 
