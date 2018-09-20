@@ -541,6 +541,8 @@ let PrintOptionInfo (tcConfigB:TcConfigBuilder) =
 let inputFileFlagsBoth (tcConfigB : TcConfigBuilder) =
     [   CompilerOption("reference", tagFile, OptionString (fun s -> tcConfigB.AddReferencedAssemblyByPath (rangeStartup,s)), None,
                             Some (FSComp.SR.optsReference()) );
+        CompilerOption("translator", tagFile, OptionString (fun s -> tcConfigB.AddTranslatorAssemblyByPath (rangeStartup,s)), None,
+                            Some (FSComp.SR.optsTranslator()) );
     ]
 
 let referenceFlagAbbrev (tcConfigB : TcConfigBuilder) = 

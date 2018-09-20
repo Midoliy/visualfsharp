@@ -2348,6 +2348,8 @@ type TcConfigBuilder =
       mutable tryGetMetadataSnapshot : ILReaderTryGetMetadataSnapshot
 
       mutable internalTestSpanStackReferring : bool
+
+      mutable translatorDLLs: AssemblyReference list
       }
 
     static member Initial =
@@ -2485,6 +2487,8 @@ type TcConfigBuilder =
           shadowCopyReferences = false
           tryGetMetadataSnapshot = (fun _ -> None)
           internalTestSpanStackReferring = false
+
+          translatorDLLs = []
         }
 
     static member CreateNew(legacyReferenceResolver, defaultFSharpBinariesDir, reduceMemoryUsage, implicitIncludeDir,
@@ -2599,16 +2603,28 @@ type TcConfigBuilder =
     member tcConfigB.AddEmbeddedResource filename =
         tcConfigB.embedResources <- tcConfigB.embedResources ++ filename
 
-    member tcConfigB.AddReferencedAssemblyByPath (m, path) = 
+    member private tcConfigB.AddAssemblyByPath (m, path, lst: AssemblyReference list ref) = 
         if FileSystem.IsInvalidPathShim(path) then
             warning(Error(FSComp.SR.buildInvalidAssemblyName(path), m))
-        elif not (tcConfigB.referencedDLLs  |> List.exists (fun ar2 -> m=ar2.Range && path=ar2.Text)) then // NOTE: We keep same paths if range is different.
+        elif not (lst.Value |> List.exists (fun ar2 -> m=ar2.Range && path=ar2.Text)) then // NOTE: We keep same paths if range is different.
              let projectReference = tcConfigB.projectReferences |> List.tryPick (fun pr -> if pr.FileName = path then Some pr else None)
-             tcConfigB.referencedDLLs <- tcConfigB.referencedDLLs ++ AssemblyReference(m, path, projectReference)
+             lst.Value <- lst.Value ++ AssemblyReference(m, path, projectReference)
+
+    member private tcConfigB.RemoveAssemblyByPath (m, path, lst: AssemblyReference list ref) =
+        lst.Value <- lst.Value |> List.filter (fun ar-> ar.Range <> m || ar.Text <> path)
+    
+    member tcConfigB.AddReferencedAssemblyByPath (m, path) =
+        tcConfigB.AddAssemblyByPath(m, path, ref tcConfigB.referencedDLLs)
              
     member tcConfigB.RemoveReferencedAssemblyByPath (m, path) =
-        tcConfigB.referencedDLLs <- tcConfigB.referencedDLLs |> List.filter (fun ar-> ar.Range <> m || ar.Text <> path)
+        tcConfigB.RemoveAssemblyByPath(m, path, ref tcConfigB.referencedDLLs)
     
+    member tcConfigB.AddTranslatorAssemblyByPath (m, path) = 
+        tcConfigB.AddAssemblyByPath(m, path, ref tcConfigB.translatorDLLs)
+             
+    member tcConfigB.RemoveTranslatorAssemblyByPath (m, path) =
+        tcConfigB.RemoveAssemblyByPath(m, path, ref tcConfigB.translatorDLLs)
+
     static member SplitCommandLineResourceInfo ri = 
         if String.contains ri ',' then 
             let p = String.index ri ',' 
@@ -2946,6 +2962,8 @@ type TcConfig private (data : TcConfigBuilder, validate:bool) =
     member x.shadowCopyReferences = data.shadowCopyReferences
     member x.tryGetMetadataSnapshot = data.tryGetMetadataSnapshot
     member x.internalTestSpanStackReferring = data.internalTestSpanStackReferring
+    member x.translatorDLLs = data.translatorDLLs
+
     static member Create(builder, validate) = 
         use unwindBuildPhase = PushThreadBuildPhaseUntilUnwind BuildPhase.Parameter
         TcConfig(builder, validate)

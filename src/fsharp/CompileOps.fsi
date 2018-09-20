@@ -366,6 +366,8 @@ type TcConfigBuilder =
 
       /// if true - 'let mutable x = Span.Empty', the value 'x' is a stack referring span. Used for internal testing purposes only until we get true stack spans.
       mutable internalTestSpanStackReferring : bool
+
+      mutable translatorDLLs: AssemblyReference list
     }
 
     static member Initial: TcConfigBuilder
@@ -389,7 +391,9 @@ type TcConfigBuilder =
     member RemoveReferencedAssemblyByPath: range * string -> unit
     member AddEmbeddedSourceFile: string -> unit
     member AddEmbeddedResource: string -> unit
-    
+    member AddTranslatorAssemblyByPath: range * string -> unit
+    member RemoveTranslatorAssemblyByPath: range * string -> unit
+   
     static member SplitCommandLineResourceInfo: string -> string * string * ILResourceAccess
 
 
@@ -508,6 +512,8 @@ type TcConfig =
     /// If true, indicates all type checking and code generation is in the context of fsi.exe
     member isInteractive: bool
     member isInvalidationSupported: bool 
+
+    member translatorDLLs: AssemblyReference list
 
 
     member ComputeLightSyntaxInitialStatus: string -> bool

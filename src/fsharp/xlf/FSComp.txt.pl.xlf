@@ -7067,6 +7067,11 @@
         <target state="new">This type does not inherit Attribute, it will not work correctly with other .NET languages.</target>
         <note />
       </trans-unit>
+      <trans-unit id="optsTranslator">
+        <source>Translator an assembly</source>
+        <target state="new">Translator an assembly</target>
+        <note />
+      </trans-unit>
     </body>
   </file>
 </xliff>
