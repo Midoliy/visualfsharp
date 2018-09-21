@@ -1787,6 +1787,14 @@ let main0(ctok, argv, legacyReferenceResolver, bannerAlreadyPrinted, reduceMemor
         inputs |> List.iter (fun (input, _filename) -> printf "AST:\n"; printfn "%+A" input; printf "\n") 
 
     let tcConfig = (tcConfig, inputs) ||> List.fold (fun z (x, m) -> ApplyMetaCommandsFromInputToTcConfig(z, x, m))
+
+    // Load translators if configured
+    let translators = LoadTranslators tcConfig
+
+    // Extract AST pre-translators and apply it.
+    let preTranslators = GetPreTranslators translators
+    let inputs = inputs |> List.map (fun (input, x) -> (ApplyPreTranslators tcConfig preTranslators input, x))
+
     let tcConfigP = TcConfigProvider.Constant(tcConfig)
 
     // Import other assemblies

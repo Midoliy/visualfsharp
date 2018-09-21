@@ -751,27 +751,35 @@ namespace Microsoft.FSharp.Core
         /// or an enclosing module opened.</summary>
         member Path: string
         
-    /// <summary>This attribute is used to indicate AST pre-translator insertion point.</summary>
+    /// <summary>This attribute is used to indicate AST translator insertion point.
+    /// The translator has to implement IPreTranslator interface.</summary>
     [<AttributeUsage (AttributeTargets.Assembly ,AllowMultiple=true)>]  
     [<Sealed>]
-    type PreTranslatorAttribute =
+    type TranslatorAttribute =
         inherit Attribute
-
-        /// <summary>Creates an instance of the attribute</summary>
-        /// <param name="fqtn">The AST pre-translator type name.</param>
-        /// <returns>PreTranslatorAttribute</returns>
-        new : fqtn:string -> PreTranslatorAttribute
-
-        /// <summary>Creates an instance of the attribute</summary>
-        /// <param name="translatorType">The AST pre-translator type.</param>
-        /// <returns>PreTranslatorAttribute</returns>
-        new : translatorType:Type -> PreTranslatorAttribute
         
-        /// <summary>Indicates the type name for AST pre-translator.</summary>
+        /// <summary>Creates an instance of the attribute</summary>
+        /// <param name="fqtn">The AST translator type name.</param>
+        /// <returns>PreTranslatorAttribute</returns>
+        new : fqtn:string -> TranslatorAttribute
+
+        /// <summary>Creates an instance of the attribute</summary>
+        /// <param name="translatorType">The AST translator type.</param>
+        /// <returns>PreTranslatorAttribute</returns>
+        new : translatorType:Type -> TranslatorAttribute
+
+        /// <summary>Indicates the type name for AST translator.</summary>
         member TypeName: string
 
+    /// <summary>This interface is base type of AST translator insertion point.</summary>
+    type ITranslator =
+        /// <summary>It translator name</summary>
+        abstract Name: string
+
     /// <summary>This interface is used to a implementation of AST pre-translator insertion point.</summary>
-    type IPreTranslator<'Node, 'Config> =
+    type IPreTranslator<'Config, 'Node> =
+        inherit ITranslator
+
         /// <summary>The node is AST typed node. Pre-translator has to translate from parsed AST node to custom translated AST node.
         /// Both instance types are equals. The config parameter can use the translate process.
         /// Parameter types become from ParsedImplFile, ParsedSigFile, ParsedFsiInteraction and TcConfig at FSharp.Compiler.Private assembly.</summary>

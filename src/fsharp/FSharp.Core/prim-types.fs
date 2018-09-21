@@ -333,12 +333,15 @@ namespace Microsoft.FSharp.Core
               
     [<AttributeUsage(AttributeTargets.Assembly,AllowMultiple=true)>]
     [<Sealed>]
-    type PreTranslatorAttribute(fqtn:string) =
+    type TranslatorAttribute (fqtn:string) =
         inherit System.Attribute()
         member x.TypeName = fqtn
-        new(translatorType:Type) = PreTranslatorAttribute(translatorType.AssemblyQualifiedName)
+        new (translatorType:Type) = TranslatorAttribute(translatorType.AssemblyQualifiedName)
 
-    type IPreTranslator<'Node, 'Config> =
+    type ITranslator =
+        abstract Name: string
+    type IPreTranslator<'Config, 'Node> =
+        inherit ITranslator
         abstract Translate: 'Config -> 'Node -> 'Node
 
     /// This Attribute is used to make Value bindings like

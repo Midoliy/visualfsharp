@@ -693,6 +693,19 @@ val DefaultReferencesForScriptsAndOutOfProjectSources: bool -> string list
 val ParseOneInputFile: TcConfig * Lexhelp.LexResourceManager * string list * string * isLastCompiland: (bool * bool) * ErrorLogger * (*retryLocked*) bool -> ParsedInput option
 
 //----------------------------------------------------------------------------
+// AST translator functions
+//--------------------------------------------------------------------------
+
+// Load translators if configured.
+val LoadTranslators: TcConfig -> ITranslator list
+
+// Get pre-translators from translator instances.
+val GetPreTranslators: ITranslator list -> IPreTranslator<TcConfig, ParsedInput> list
+
+// Apply pre-translators to ASTs
+val ApplyPreTranslators: TcConfig -> IPreTranslator<TcConfig, ParsedInput> list -> ParsedInput -> ParsedInput
+
+//----------------------------------------------------------------------------
 // Type checking and querying the type checking state
 //--------------------------------------------------------------------------
 

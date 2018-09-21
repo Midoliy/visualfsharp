@@ -5288,8 +5288,32 @@ type LoadClosure with
     static member ComputeClosureOfScriptFiles (ctok, tcConfig:TcConfig, files:(string*range) list, codeContext, lexResourceManager:Lexhelp.LexResourceManager) = 
         use unwindBuildPhase = PushThreadBuildPhaseUntilUnwind BuildPhase.Parse
         ScriptPreprocessClosure.GetFullClosureOfScriptFiles (ctok, tcConfig, files, codeContext, lexResourceManager)
-        
-              
+           
+
+//----------------------------------------------------------------------------
+// AST translator functions
+//--------------------------------------------------------------------------
+   
+// Load translators if configured.
+let LoadTranslators (tcConfig:TcConfig) =
+    tcConfig.translatorDLLs
+    |> Seq.collect (fun ar ->
+        let assembly = FileSystem.AssemblyLoadFrom ar.Text
+        assembly.GetCustomAttributes(typeof<TranslatorAttribute>, false)
+            |> Seq.map (fun attr -> assembly.CreateInstance((attr :?> TranslatorAttribute).TypeName) :?> ITranslator))
+    |> Seq.toList
+           
+// Get pre-translators from translator instances.
+let GetPreTranslators (translators: ITranslator list) =
+    translators
+    |> List.choose (fun tr ->
+        match tr with
+        | :? IPreTranslator<TcConfig, ParsedInput> as tr -> Some(tr)
+        | _ -> None)
+
+// Apply pre-translators to ASTs
+let ApplyPreTranslators (tcConfig:TcConfig) (translators: IPreTranslator<TcConfig, ParsedInput> list) (input: ParsedInput) =
+    translators |> List.fold (fun input tr -> tr.Translate tcConfig input) input
 
 //----------------------------------------------------------------------------
 // Initial type checking environment
