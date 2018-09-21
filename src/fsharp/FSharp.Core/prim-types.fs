@@ -330,19 +330,6 @@ namespace Microsoft.FSharp.Core
         inherit System.Attribute()
         member x.Path = path
         new() =  AutoOpenAttribute("")
-              
-    [<AttributeUsage(AttributeTargets.Assembly,AllowMultiple=true)>]
-    [<Sealed>]
-    type TranslatorAttribute (fqtn:string) =
-        inherit System.Attribute()
-        member x.TypeName = fqtn
-        new (translatorType:Type) = TranslatorAttribute(translatorType.AssemblyQualifiedName)
-
-    type ITranslator =
-        abstract Name: string
-    type IPreTranslator<'Config, 'Node> =
-        inherit ITranslator
-        abstract Translate: 'Config -> 'Node -> 'Node
 
     /// This Attribute is used to make Value bindings like
     ///      let x = some code

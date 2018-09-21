@@ -354,4 +354,16 @@ namespace Microsoft.FSharp.Core.CompilerServices
     type ITypeProvider2 =
         abstract GetStaticParametersForMethod : methodWithoutArguments:MethodBase -> ParameterInfo[] 
         abstract ApplyStaticArgumentsForMethod : methodWithoutArguments:MethodBase * methodNameWithArguments:string * staticArguments:obj[] -> MethodBase
+              
+    [<AttributeUsage(AttributeTargets.Assembly,AllowMultiple=true)>]
+    [<Sealed>]
+    type TranslatorAttribute (fqtn:string) =
+        inherit System.Attribute()
+        member __.TypeName = fqtn
+        new (translatorType:Type) = TranslatorAttribute(translatorType.AssemblyQualifiedName)
 
+    type ITranslator =
+        abstract Name: string
+    type IPreTranslator<'Config, 'Node> =
+        inherit ITranslator
+        abstract Translate: 'Config -> 'Node -> 'Node

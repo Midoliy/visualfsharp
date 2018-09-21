@@ -750,40 +750,6 @@ namespace Microsoft.FSharp.Core
         /// <summary>Indicates the namespace or module to be automatically opened when an assembly is referenced
         /// or an enclosing module opened.</summary>
         member Path: string
-        
-    /// <summary>This attribute is used to indicate AST translator insertion point.
-    /// The translator has to implement IPreTranslator interface.</summary>
-    [<AttributeUsage (AttributeTargets.Assembly ,AllowMultiple=true)>]  
-    [<Sealed>]
-    type TranslatorAttribute =
-        inherit Attribute
-        
-        /// <summary>Creates an instance of the attribute</summary>
-        /// <param name="fqtn">The AST translator type name.</param>
-        /// <returns>PreTranslatorAttribute</returns>
-        new : fqtn:string -> TranslatorAttribute
-
-        /// <summary>Creates an instance of the attribute</summary>
-        /// <param name="translatorType">The AST translator type.</param>
-        /// <returns>PreTranslatorAttribute</returns>
-        new : translatorType:Type -> TranslatorAttribute
-
-        /// <summary>Indicates the type name for AST translator.</summary>
-        member TypeName: string
-
-    /// <summary>This interface is base type of AST translator insertion point.</summary>
-    type ITranslator =
-        /// <summary>It translator name</summary>
-        abstract Name: string
-
-    /// <summary>This interface is used to a implementation of AST pre-translator insertion point.</summary>
-    type IPreTranslator<'Config, 'Node> =
-        inherit ITranslator
-
-        /// <summary>The node is AST typed node. Pre-translator has to translate from parsed AST node to custom translated AST node.
-        /// Both instance types are equals. The config parameter can use the translate process.
-        /// Parameter types become from ParsedImplFile, ParsedSigFile, ParsedFsiInteraction and TcConfig at FSharp.Compiler.Private assembly.</summary>
-        abstract Translate: 'Config -> 'Node -> 'Node
 
     [<MeasureAnnotatedAbbreviation>] 
     /// <summary>The type of floating point numbers, annotated with a unit of measure. The unit
