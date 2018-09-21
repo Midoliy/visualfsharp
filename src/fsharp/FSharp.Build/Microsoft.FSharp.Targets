@@ -217,6 +217,7 @@ this file.
                 @(ReferencePath);
                 @(CompiledLicenseFile);
                 @(EmbeddedDocumentation); 
+                @(TranslatorPath);
                 $(Win32Resource);
                 $(Win32Manifest);
                 @(CustomAdditionalCompileInputs);
@@ -303,6 +304,7 @@ this file.
               TargetProfile="$(TargetProfile)"
               ToolExe="$(FscToolExe)"
               ToolPath="$(FscToolPath)"
+              Translators="@(TranslatorPath)"
               TreatWarningsAsErrors="$(TreatWarningsAsErrors)"
               UseStandardResourceNames="$(UseStandardResourceNames)"
               Utf8Output="$(Utf8Output)"
@@ -362,6 +364,7 @@ this file.
           <CustomAdditionalCompileInputs Include="$(IntermediateOutputPath)$(MSBuildProjectFile).CoreCompileInputs.cache" />
           <CoreCompileCache Remove="@(Compile)" />
           <CoreCompileCache Include="@(ReferencePath)" />
+          <CoreCompileCache Include="@(TranslatorPath)" />
           <CoreCompileCache Include="$([System.DateTime]::Now.Ticks)" />
         </ItemGroup>
 

@@ -70,6 +70,7 @@ type public Fsc () as this =
         match FSharpEnvironment.BinFolderOfDefaultFSharpCompiler(locationOfThisDll) with
         | Some s -> s
         | None -> ""
+    let mutable translators : ITaskItem[] = [||]
     let mutable treatWarningsAsErrors : bool = false
     let mutable useStandardResourceNames : bool = false
     let mutable warningsAsErrors : string = null
@@ -175,6 +176,11 @@ type public Fsc () as this =
                 | "WINEXE" -> "winexe" 
                 | "MODULE" -> "module"
                 | _ -> null)
+
+        // Translators
+        if translators <> null then 
+            for item in translators do
+                builder.AppendSwitchIfNotNull("--translator:", item.ItemSpec)
 
         // NoWarn
         match disabledWarnings with
@@ -417,6 +423,11 @@ type public Fsc () as this =
     member fsc.TargetType
         with get() = targetType
         and set(s) = targetType <- s
+        
+    // --translator <string>: AST translator F# assembly.
+    member fsc.Translators
+        with get() = translators
+        and set(a) = translators <- a
 
     member fsc.TreatWarningsAsErrors
         with get() = treatWarningsAsErrors
