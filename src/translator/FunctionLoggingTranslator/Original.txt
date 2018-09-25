@@ -1,0 +1,205 @@
+﻿ImplFile
+  (ParsedImplFileInput
+     ("D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs",
+      false,QualifiedNameOfFile Program,[],[],
+      [SynModuleOrNamespace
+         ([Program],false,true,
+          [Let
+             (false,
+              [Binding
+                 (None,NormalBinding,false,false,[],
+                  PreXmlDoc
+                    ((2,15),Microsoft.FSharp.Compiler.Ast+XmlDocCollector),
+                  SynValData
+                    (None,
+                     SynValInfo
+                       ([[SynArgInfo ([],false,Some a)];
+                         [SynArgInfo ([],false,Some b)]],
+                        SynArgInfo ([],false,None)),None),
+                  LongIdent
+                    (LongIdentWithDots ([addFunc],[]),None,None,
+                     Pats
+                       [Named
+                          (Wild
+                             D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (2,12--2,13) IsSynthetic=false,
+                           a,false,None,
+                           D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (2,12--2,13) IsSynthetic=false);
+                        Named
+                          (Wild
+                             D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (2,14--2,15) IsSynthetic=false,
+                           b,false,None,
+                           D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (2,14--2,15) IsSynthetic=false)],
+                     None,
+                     D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (2,4--2,15) IsSynthetic=false),
+                  None,
+                  App
+                    (NonAtomic,false,
+                     App
+                       (NonAtomic,true,Ident op_Addition,Ident a,
+                        D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (3,4--3,7) IsSynthetic=false),
+                     Ident b,
+                     D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (3,4--3,9) IsSynthetic=false),
+                  D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (2,4--2,15) IsSynthetic=false,
+                  SequencePointAtBinding
+                    D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (2,0--3,9) IsSynthetic=false)],
+              D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (2,0--3,9) IsSynthetic=false);
+           Let
+             (false,
+              [Binding
+                 (None,NormalBinding,false,false,[],
+                  PreXmlDoc
+                    ((4,15),Microsoft.FSharp.Compiler.Ast+XmlDocCollector),
+                  SynValData
+                    (None,
+                     SynValInfo
+                       ([[SynArgInfo ([],false,Some a)];
+                         [SynArgInfo ([],false,Some b)]],
+                        SynArgInfo ([],false,None)),None),
+                  LongIdent
+                    (LongIdentWithDots ([subFunc],[]),None,None,
+                     Pats
+                       [Named
+                          (Wild
+                             D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (4,12--4,13) IsSynthetic=false,
+                           a,false,None,
+                           D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (4,12--4,13) IsSynthetic=false);
+                        Named
+                          (Wild
+                             D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (4,14--4,15) IsSynthetic=false,
+                           b,false,None,
+                           D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (4,14--4,15) IsSynthetic=false)],
+                     None,
+                     D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (4,4--4,15) IsSynthetic=false),
+                  None,
+                  App
+                    (NonAtomic,false,
+                     App
+                       (NonAtomic,true,Ident op_Subtraction,Ident a,
+                        D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (5,4--5,7) IsSynthetic=false),
+                     Ident b,
+                     D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (5,4--5,9) IsSynthetic=false),
+                  D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (4,4--4,15) IsSynthetic=false,
+                  SequencePointAtBinding
+                    D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (4,0--5,9) IsSynthetic=false)],
+              D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (4,0--5,9) IsSynthetic=false);
+           Let
+             (false,
+              [Binding
+                 (None,NormalBinding,false,false,
+                  [{TypeName = LongIdentWithDots ([EntryPoint],[]);
+                    ArgExpr =
+                     Const
+                       (Unit,
+                        D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (7,2--7,12) IsSynthetic=false);
+                    Target = None;
+                    AppliesToGetterAndSetter = false;
+                    Range =
+                     D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (7,2--7,12) IsSynthetic=false;}],
+                  PreXmlDoc
+                    ((8,13),Microsoft.FSharp.Compiler.Ast+XmlDocCollector),
+                  SynValData
+                    (None,
+                     SynValInfo
+                       ([[SynArgInfo ([],false,Some argv)]],
+                        SynArgInfo ([],false,None)),None),
+                  LongIdent
+                    (LongIdentWithDots ([main],[]),None,None,
+                     Pats
+                       [Named
+                          (Wild
+                             D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (8,9--8,13) IsSynthetic=false,
+                           argv,false,None,
+                           D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (8,9--8,13) IsSynthetic=false)],
+                     None,
+                     D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (8,4--8,13) IsSynthetic=false),
+                  None,
+                  LetOrUse
+                    (false,false,
+                     [Binding
+                        (None,NormalBinding,false,false,[],
+                         PreXmlDoc
+                           ((9,10),Microsoft.FSharp.Compiler.Ast+XmlDocCollector),
+                         SynValData
+                           (None,SynValInfo ([],SynArgInfo ([],false,None)),None),
+                         Named
+                           (Wild
+                              D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (9,8--9,10) IsSynthetic=false,
+                            r1,false,None,
+                            D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (9,8--9,10) IsSynthetic=false),
+                         None,
+                         App
+                           (NonAtomic,false,
+                            App
+                              (NonAtomic,false,Ident addFunc,
+                               Const
+                                 (Int32 1,
+                                  D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (9,21--9,22) IsSynthetic=false),
+                               D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (9,13--9,22) IsSynthetic=false),
+                            Const
+                              (Int32 2,
+                               D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (9,23--9,24) IsSynthetic=false),
+                            D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (9,13--9,24) IsSynthetic=false),
+                         D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (9,8--9,10) IsSynthetic=false,
+                         SequencePointAtBinding
+                           D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (9,4--9,24) IsSynthetic=false)],
+                     LetOrUse
+                       (false,false,
+                        [Binding
+                           (None,NormalBinding,false,false,[],
+                            PreXmlDoc
+                              ((10,10),
+                               Microsoft.FSharp.Compiler.Ast+XmlDocCollector),
+                            SynValData
+                              (None,SynValInfo ([],SynArgInfo ([],false,None)),
+                               None),
+                            Named
+                              (Wild
+                                 D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (10,8--10,10) IsSynthetic=false,
+                               r2,false,None,
+                               D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (10,8--10,10) IsSynthetic=false),
+                            None,
+                            App
+                              (NonAtomic,false,
+                               App
+                                 (NonAtomic,false,Ident subFunc,
+                                  Const
+                                    (Int32 1,
+                                     D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (10,21--10,22) IsSynthetic=false),
+                                  D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (10,13--10,22) IsSynthetic=false),
+                               Const
+                                 (Int32 2,
+                                  D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (10,23--10,24) IsSynthetic=false),
+                               D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (10,13--10,24) IsSynthetic=false),
+                            D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (10,8--10,10) IsSynthetic=false,
+                            SequencePointAtBinding
+                              D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (10,4--10,24) IsSynthetic=false)],
+                        Sequential
+                          (SequencePointsAtSeq,true,
+                           App
+                             (NonAtomic,false,
+                              App
+                                (NonAtomic,false,
+                                 App
+                                   (NonAtomic,false,Ident printfn,
+                                    Const
+                                      (String
+                                         ("addFunc=%d, subFunc=%d",
+                                          D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (11,12--11,36) IsSynthetic=false),
+                                       D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (11,12--11,36) IsSynthetic=false),
+                                    D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (11,4--11,36) IsSynthetic=false),
+                                 Ident r1,
+                                 D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (11,4--11,39) IsSynthetic=false),
+                              Ident r2,
+                              D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (11,4--11,42) IsSynthetic=false),
+                           Const
+                             (Int32 0,
+                              D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (12,4--12,5) IsSynthetic=false),
+                           D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (11,4--12,5) IsSynthetic=false),
+                        D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (10,4--12,5) IsSynthetic=false),
+                     D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (9,4--12,5) IsSynthetic=false),
+                  D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (8,4--8,13) IsSynthetic=false,
+                  NoSequencePointAtLetBinding)],
+              D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (8,0--12,5) IsSynthetic=false)],
+          PreXmlDocEmpty,[],None,
+          D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs (2,0--13,0) IsSynthetic=false)],
+      (true, true)))

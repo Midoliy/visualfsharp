@@ -25,7 +25,7 @@
     <DocumentationFile>bin\$(Configuration)\$(AssemblyName).XML</DocumentationFile>
     <StartAction>Program</StartAction>
     <StartProgram>D:\PROJECT\visualfsharp\Debug\net40\bin\fsc.exe</StartProgram>
-    <StartArguments>--translator:D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslator\bin\Debug\FunctionLoggingTranslator.dll D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslatorTarget\Program.fs</StartArguments>
+    <StartArguments>-g --debug:full --noframework --define:DEBUG --define:TRACE --optimize- --tailcalls- --platform:anycpu32bitpreferred "-r:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\mscorlib.dll" "-r:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Core.dll" "-r:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll" "-r:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Numerics.dll" "-r:C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.ValueTuple\v4.0_4.0.0.0__cc7b13ffcd2ddd51\System.ValueTuple.dll" --target:exe --warn:3 --warnaserror:76 --vserrors --preferreduilang:en-US --utf8output --fullpaths --flaterrors --subsystemversion:6.00 --highentropyva+ --translator:D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslator\bin\Debug\FunctionLoggingTranslator.dll D:\PROJECT\visualfsharp\src\translator\FunctionLoggingTranslator\TargetProgram.fs</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -46,6 +46,10 @@
   <ItemGroup>
     <Compile Include="FunctionLoggingTranslatorImpl.fs" />
     <Content Include="packages.config" />
+    <None Include="TargetProgram.fs" />
+    <None Include="Original.txt" />
+    <None Include="Translated.txt" />
+    <None Include="Goal.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
