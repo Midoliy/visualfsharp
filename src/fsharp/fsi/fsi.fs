@@ -31,6 +31,7 @@ open Microsoft.FSharp.Compiler.AbstractIL.ILRuntimeWriter
 open Microsoft.FSharp.Compiler.Lib
 open Microsoft.FSharp.Compiler.AccessibilityLogic
 open Microsoft.FSharp.Compiler.Ast
+open Microsoft.FSharp.Compiler.Configurations
 open Microsoft.FSharp.Compiler.CompileOptions
 open Microsoft.FSharp.Compiler.CompileOps
 open Microsoft.FSharp.Compiler.ErrorLogger

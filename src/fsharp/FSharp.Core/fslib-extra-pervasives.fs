@@ -357,13 +357,12 @@ namespace Microsoft.FSharp.Core.CompilerServices
               
     [<AttributeUsage(AttributeTargets.Assembly,AllowMultiple=true)>]
     [<Sealed>]
-    type TranslatorAttribute (fqtn:string) =
+    type TranslatorAttribute (translatorType:Type) =
         inherit System.Attribute()
-        member __.TypeName = fqtn
-        new (translatorType:Type) = TranslatorAttribute(translatorType.AssemblyQualifiedName)
+        member __.TargetType = translatorType
 
     type ITranslator =
         abstract Name: string
-    type IPreTranslator<'Config, 'Node> =
+    type ITranslator<'CompilerConfig, 'ErrorLogger, 'Node> =
         inherit ITranslator
-        abstract Translate: 'Config -> 'Node -> 'Node
+        abstract Translate: 'CompilerConfig -> 'ErrorLogger -> 'Node -> 'Node

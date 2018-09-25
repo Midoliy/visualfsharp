@@ -492,6 +492,12 @@
     </Compile>
 
     <!-- includes the core of the F# Compiler fsc.exe implementation -->
+    <Compile Include="..\CompileConfig.fsi">
+      <Link>Driver\CompileConfig.fsi</Link>
+    </Compile>
+    <Compile Include="..\CompileConfig.fs">
+      <Link>Driver\CompileConfig.fs</Link>
+    </Compile>
     <Compile Include="..\CompileOps.fsi">
       <Link>Driver\CompileOps.fsi</Link>
     </Compile>

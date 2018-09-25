@@ -344,15 +344,10 @@ namespace Microsoft.FSharp.Core.CompilerServices
         
     /// <summary>This attribute is used to indicate AST translator insertion point.
     /// The translator has to implement IPreTranslator interface.</summary>
-    [<AttributeUsage (AttributeTargets.Assembly ,AllowMultiple=true)>]  
+    [<AttributeUsage (AttributeTargets.Assembly, AllowMultiple=true)>]  
     [<Sealed>]
     type TranslatorAttribute =
         inherit Attribute
-        
-        /// <summary>Creates an instance of the attribute</summary>
-        /// <param name="fqtn">The AST translator type name.</param>
-        /// <returns>PreTranslatorAttribute</returns>
-        new : fqtn:string -> TranslatorAttribute
 
         /// <summary>Creates an instance of the attribute</summary>
         /// <param name="translatorType">The AST translator type.</param>
@@ -360,18 +355,18 @@ namespace Microsoft.FSharp.Core.CompilerServices
         new : translatorType:Type -> TranslatorAttribute
 
         /// <summary>Indicates the type name for AST translator.</summary>
-        member TypeName: string
+        member TargetType: Type
 
     /// <summary>This interface is base type of AST translator insertion point.</summary>
     type ITranslator =
         /// <summary>It translator name</summary>
         abstract Name: string
 
-    /// <summary>This interface is used to a implementation of AST pre-translator insertion point.</summary>
-    type IPreTranslator<'Config, 'Node> =
+    /// <summary>This interface is used to a implementation of AST translator insertion point.</summary>
+    type ITranslator<'CompileConfig, 'ErrorLogger, 'Node> =
         inherit ITranslator
 
-        /// <summary>The node is AST typed node. Pre-translator has to translate from parsed AST node to custom translated AST node.
+        /// <summary>The node is AST typed node. Translator has to translate from parsed AST node to custom translated AST node.
         /// Both instance types are equals. The config parameter can use the translate process.
-        /// Parameter types become from ParsedImplFile, ParsedSigFile, ParsedFsiInteraction and TcConfig at FSharp.Compiler.Private assembly.</summary>
-        abstract Translate: 'Config -> 'Node -> 'Node
+        /// Parameter types become from ICompilerConfig ('CompilerConfig), ErrorLogger ('ErrorLogger) and ParsedInput ('Node) at FSharp.Compiler.Private assembly.</summary>
+        abstract Translate: 'CompileConfig -> 'ErrorLogger -> 'Node -> 'Node

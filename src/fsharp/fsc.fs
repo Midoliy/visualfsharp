@@ -39,6 +39,7 @@ open Microsoft.FSharp.Compiler.IlxGen
 open Microsoft.FSharp.Compiler.AccessibilityLogic
 open Microsoft.FSharp.Compiler.AttributeChecking
 open Microsoft.FSharp.Compiler.Ast
+open Microsoft.FSharp.Compiler.Configurations
 open Microsoft.FSharp.Compiler.CompileOps
 open Microsoft.FSharp.Compiler.CompileOptions
 open Microsoft.FSharp.Compiler.ErrorLogger
@@ -1754,6 +1755,11 @@ let main0(ctok, argv, legacyReferenceResolver, bannerAlreadyPrinted, reduceMemor
 
     // Register framework tcImports to be disposed in future
     disposables.Register frameworkTcImports
+    
+    // Load translators if configured
+    ReportTime tcConfig "Load translators"
+    let translators = LoadTranslators(tcConfig)
+    let parsedInputTranslators = GetTranslators(translators)
 
     // Parse sourceFiles 
     ReportTime tcConfig "Parse inputs"
@@ -1766,13 +1772,16 @@ let main0(ctok, argv, legacyReferenceResolver, bannerAlreadyPrinted, reduceMemor
             |> List.choose (fun (filename:string, isLastCompiland) -> 
                 let pathOfMetaCommandSource = Path.GetDirectoryName(filename)
                 match ParseOneInputFile(tcConfig, lexResourceManager, ["COMPILED"], filename, (isLastCompiland, isExe), errorLogger, (*retryLocked*)false) with
-                | Some input -> Some (input, pathOfMetaCommandSource)
-                | None -> None
-                ) 
+                | Some input ->
+                    // Apply AST translators.
+                    let translated = ApplyTranslators(tcConfig, parsedInputTranslators, errorLogger, input)
+                    Some (translated, pathOfMetaCommandSource)
+                | None ->
+                    None) 
         with e -> 
             errorRecoveryNoRange e
             exiter.Exit 1
-    
+
     let inputs =
         // Deduplicate module names
         let moduleNamesDict = ConcurrentDictionary<string,Set<string>>()
@@ -1787,14 +1796,6 @@ let main0(ctok, argv, legacyReferenceResolver, bannerAlreadyPrinted, reduceMemor
         inputs |> List.iter (fun (input, _filename) -> printf "AST:\n"; printfn "%+A" input; printf "\n") 
 
     let tcConfig = (tcConfig, inputs) ||> List.fold (fun z (x, m) -> ApplyMetaCommandsFromInputToTcConfig(z, x, m))
-
-    // Load translators if configured
-    let translators = LoadTranslators tcConfig
-
-    // Extract AST pre-translators and apply it.
-    let preTranslators = GetPreTranslators translators
-    let inputs = inputs |> List.map (fun (input, x) -> (ApplyPreTranslators tcConfig preTranslators input, x))
-
     let tcConfigP = TcConfigProvider.Constant(tcConfig)
 
     // Import other assemblies

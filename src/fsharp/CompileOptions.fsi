@@ -4,6 +4,7 @@ module internal Microsoft.FSharp.Compiler.CompileOptions
 
 open Microsoft.FSharp.Compiler 
 open Microsoft.FSharp.Compiler.AbstractIL.Internal.Library
+open Microsoft.FSharp.Compiler.Configurations
 open Microsoft.FSharp.Compiler.CompileOps
 open Microsoft.FSharp.Compiler.Tast
 open Microsoft.FSharp.Compiler.Import

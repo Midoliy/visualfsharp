@@ -1105,7 +1105,7 @@ Microsoft.FSharp.Core.CompilerServices.TypeProviderXmlDocAttribute: System.Strin
 Microsoft.FSharp.Core.CompilerServices.TypeProviderXmlDocAttribute: System.String get_CommentText()
 Microsoft.FSharp.Core.CompilerServices.TypeProviderXmlDocAttribute: System.Type GetType()
 Microsoft.FSharp.Core.CompilerServices.TypeProviderXmlDocAttribute: Void .ctor(System.String)
-Microsoft.FSharp.Core.CompilerServices.IPreTranslator`2[TConfig,TNode]: TNode Translate(TConfig, TNode)
+Microsoft.FSharp.Core.CompilerServices.ITranslator`2[TCompileConfig,TErrorLogger,TNode]: TNode Translate(TCompileConfig, TErrorLogger, TNode)
 Microsoft.FSharp.Core.CompilerServices.ITranslator: System.String Name
 Microsoft.FSharp.Core.CompilerServices.ITranslator: System.String get_Name()
 Microsoft.FSharp.Core.CompilerServices.TranslatorAttribute: Boolean Equals(System.Object)
@@ -1115,10 +1115,9 @@ Microsoft.FSharp.Core.CompilerServices.TranslatorAttribute: Int32 GetHashCode()
 Microsoft.FSharp.Core.CompilerServices.TranslatorAttribute: System.Object TypeId
 Microsoft.FSharp.Core.CompilerServices.TranslatorAttribute: System.Object get_TypeId()
 Microsoft.FSharp.Core.CompilerServices.TranslatorAttribute: System.String ToString()
-Microsoft.FSharp.Core.CompilerServices.TranslatorAttribute: System.String TypeName
-Microsoft.FSharp.Core.CompilerServices.TranslatorAttribute: System.String get_TypeName()
+Microsoft.FSharp.Core.CompilerServices.TranslatorAttribute: System.Type TargetType
+Microsoft.FSharp.Core.CompilerServices.TranslatorAttribute: System.Type get_TargetType()
 Microsoft.FSharp.Core.CompilerServices.TranslatorAttribute: System.Type GetType()
-Microsoft.FSharp.Core.CompilerServices.TranslatorAttribute: Void .ctor(System.String)
 Microsoft.FSharp.Core.CompilerServices.TranslatorAttribute: Void .ctor(System.Type)
 Microsoft.FSharp.Core.CustomComparisonAttribute: Boolean Equals(System.Object)
 Microsoft.FSharp.Core.CustomComparisonAttribute: Boolean IsDefaultAttribute()
